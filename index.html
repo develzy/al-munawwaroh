@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TPQ Al-Munawwaroh</title>
+    <meta name="description" content="Aplikasi Monitoring Santri TPQ Al-Munawwaroh">
+    <meta name="theme-color" content="#0e4c68">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Mobile-First Container -->
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo-area">
+                    <img src="logo.png" alt="Logo Al-Munawwaroh" class="logo-image">
+                    <div class="logo-text">
+                        <h1>Al-Munawwaroh</h1>
+                        <small>TPQ - RTQ System</small>
+                    </div>
+                </div>
+                <div class="user-avatar">
+                    <img src="https://ui-avatars.com/api/?name=Admin&background=fff&color=047857" alt="Admin">
+                </div>
+            </div>
+
+            <!-- Quick Stats Card -->
+            <div class="hero-card">
+                <div class="card-content">
+                    <p>Total Santri Aktif</p>
+                    <h2>142 <span class="unit">Anak</span></h2>
+                    <div class="progress-bar">
+                        <div class="fill" style="width: 75%"></div>
+                    </div>
+                    <p class="subtitle">Target: 200 Santri tahun ini</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="sticky-nav">
+            <button class="nav-btn active" data-tab="dashboard">
+                <i class="fa-solid fa-house"></i> <span>Beranda</span>
+            </button>
+            <button class="nav-btn" data-tab="santri">
+                <i class="fa-solid fa-users"></i> <span>Santri</span>
+            </button>
+            <button class="nav-btn" data-tab="hafalan">
+                <i class="fa-solid fa-book-open"></i> <span>Hafalan</span>
+            </button>
+            <button class="nav-btn" data-tab="keuangan">
+                <i class="fa-solid fa-wallet"></i> <span>Infaq</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main id="main-content">
+            <!-- Dashboard View -->
+            <section id="dashboard" class="page-section active">
+                <div class="section-header">
+                    <h3>Menu Utama</h3>
+                </div>
+
+                <div class="menu-grid">
+                    <div class="menu-item" onclick="app.showModal('input-hafalan')">
+                        <div class="icon-box gold"><i class="fa-solid fa-pen-to-square"></i></div>
+                        <span>Input Hafalan</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="icon-box green"><i class="fa-solid fa-user-plus"></i></div>
+                        <span>Santri Baru</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="icon-box blue"><i class="fa-solid fa-check-double"></i></div>
+                        <span>Absensi</span>
+                    </div>
+                    <div class="menu-item">
+                        <div class="icon-box purple"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                        <span>Laporan SPP</span>
+                    </div>
+                </div>
+
+                <div class="section-header mt-4">
+                    <h3>Aktivitas Terbaru</h3>
+                    <a href="#" class="view-all">Lihat Semua</a>
+                </div>
+
+                <div class="activity-list">
+                    <!-- Dynamic Content populated by JS -->
+                    <div class="activity-item">
+                        <div class="act-icon"><i class="fa-solid fa-check circles"></i></div>
+                        <div class="act-details">
+                            <h4>Ahmad Fulan</h4>
+                            <p>Menyelesaikan Iqro 4 Halaman 20</p>
+                        </div>
+                        <div class="act-time">2m lalu</div>
+                    </div>
+                    <div class="activity-item">
+                        <div class="act-icon"><i class="fa-solid fa-star circles gold-c"></i></div>
+                        <div class="act-details">
+                            <h4>Siti Aisyah</h4>
+                            <p>Lulus Tes Juz 30</p>
+                        </div>
+                        <div class="act-time">1j lalu</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Santri View (Hidden by default) -->
+            <section id="santri" class="page-section" style="display:none;">
+                <div class="section-header">
+                    <h3>Data Santri</h3>
+                    <button class="fab-mini"><i class="fa-solid fa-plus"></i></button>
+                </div>
+                <div class="search-bar">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Cari nama santri...">
+                </div>
+                <div id="santri-list" class="data-list">
+                    <!-- Populated by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modals (Overlay) -->
+    <div id="modal-overlay" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h3 id="modal-title">Input Hafalan</h3>
+                <button class="close-modal" onclick="app.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="hafalan-form">
+                    <div class="form-group">
+                        <label>Nama Santri</label>
+                        <select class="form-control">
+                            <option>Pilih Santri...</option>
+                            <option value="1">Ahmad Fulan</option>
+                            <option value="2">Siti Aisyah</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Jenis Prestasi</label>
+                        <div class="radio-group">
+                            <label><input type="radio" name="jalur" checked> Jilid/Iqro</label>
+                            <label><input type="radio" name="jalur"> Tahfidz</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Capaian</label>
+                        <input type="text" class="form-control" placeholder="Contoh: Jilid 4 Hal 10">
+                    </div>
+                    <button type="submit" class="btn-primary w-100">Simpan Data</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <!-- Service Worker Registration for PWA -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW Registered!', reg))
+                    .catch(err => console.log('SW Failed', err));
+            });
+        }
+    </script>
+</body>
+
+</html>
