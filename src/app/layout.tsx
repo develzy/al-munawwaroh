@@ -4,6 +4,11 @@ import './globals.css';
 export const metadata: Metadata = {
     title: 'Al Munawwaroh',
     description: 'A modern premium web experience',
+    manifest: '/manifest.json',
+    icons: {
+        icon: '/logo.png',
+        apple: '/logo.png',
+    },
 };
 
 export default function RootLayout({

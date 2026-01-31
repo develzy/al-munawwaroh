@@ -1,7 +1,7 @@
 {
     "name": "TPQ Al-Munawwaroh",
     "short_name": "Al-Munawwaroh",
-    "start_url": "./index.html",
+    "start_url": "/",
     "display": "standalone",
     "background_color": "#F3F4F6",
     "theme_color": "#0e4c68",
