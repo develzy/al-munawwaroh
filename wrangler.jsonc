@@ -1,5 +1,4 @@
 {
-    "$schema": "node_modules/wrangler/config-schema.json",
     "name": "al-munawwaroh",
     "main": ".open-next/worker.js",
     "compatibility_date": "2024-11-01",
