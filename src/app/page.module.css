@@ -32,8 +32,16 @@
     z-index: 10;
 }
 
-/* Header */
+/* Base Header (Untuk halaman sub-menu) */
 .header {
+    padding: 40px 24px 20px 24px;
+    background: linear-gradient(180deg, rgba(6, 95, 70, 0.2) 0%, transparent 100%);
+    position: relative;
+    margin-bottom: 20px;
+}
+
+/* Home Header (Khusus halaman utama dengan kartu) */
+.headerHome {
     padding: 70px 24px 160px 24px;
     background: linear-gradient(180deg, rgba(6, 95, 70, 0.2) 0%, transparent 100%);
     position: relative;

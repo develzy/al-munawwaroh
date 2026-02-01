@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <>
             {/* Header Section */}
-            <header className={styles.header}>
+            <header className={styles.headerHome}>
                 <div className={styles.headerContent}>
                     <div className={styles.logoArea}>
                         <div className={styles.logoWrapper}>
