@@ -104,26 +104,65 @@ export default function AddSantriForm() {
             </div>
 
             <div className={`${styles.formGroup} stagger-2`}>
-                <label className={styles.label}>Nama Lengkap</label>
+                <label className={styles.label}>Nama Lengkap *</label>
                 <input name="nama" type="text" className={styles.input} placeholder="Contoh: Muhammad Akhyar" required />
             </div>
 
             <div className={`${styles.formGroup} stagger-3`}>
-                <label className={styles.label}>Kelas / Jilid</label>
-                <input name="kelas" type="text" className={styles.input} placeholder="Contoh: Iqro 4 / Juz 30 / Kelas 2" required />
+                <label className={styles.label}>Tempat Lahir</label>
+                <input name="tempat_lahir" type="text" className={styles.input} placeholder="Contoh: Jakarta" />
             </div>
 
             <div className={`${styles.formGroup} stagger-4`}>
-                <label className={styles.label}>Status Pembelajaran</label>
-                <select name="status" className={styles.select} required defaultValue="iqro">
-                    <option value="iqro">Iqro</option>
-                    <option value="alquran">Al-Qur'an</option>
+                <label className={styles.label}>Tanggal Lahir</label>
+                <input name="tanggal_lahir" type="date" className={styles.input} />
+            </div>
+
+            <div className={`${styles.formGroup} stagger-5`}>
+                <label className={styles.label}>Nama Ibu Kandung</label>
+                <input name="nama_ibu" type="text" className={styles.input} placeholder="Contoh: Siti Aisyah" />
+            </div>
+
+            <div className={`${styles.formGroup} stagger-6`}>
+                <label className={styles.label}>Kelas / Jilid *</label>
+                <input name="kelas" type="text" className={styles.input} placeholder="Contoh: Iqro 4 / Juz 30" required />
+            </div>
+
+            <div className={`${styles.formGroup} stagger-7`}>
+                <label className={styles.label}>Tingkat Pendidikan *</label>
+                <select name="tingkat" className={styles.select} required defaultValue="TPQ">
+                    <option value="TPQ">TPQ (Taman Pendidikan Al-Qur'an)</option>
+                    <option value="RTQ">RTQ (Rumah Tahfidz Al-Qur'an)</option>
+                    <option value="Majlis Talim">Majlis Ta'lim</option>
                 </select>
+            </div>
+
+            <div className={`${styles.formGroup} stagger-8`}>
+                <label className={styles.label}>Status *</label>
+                <select name="status" className={styles.select} required defaultValue="aktif">
+                    <option value="aktif">Aktif</option>
+                    <option value="non-aktif">Non-Aktif</option>
+                    <option value="lulus">Lulus</option>
+                </select>
+            </div>
+
+            <div className={`${styles.formGroup} stagger-9`}>
+                <label className={styles.label}>Tahun Masuk *</label>
+                <input
+                    name="tahun_masuk"
+                    type="number"
+                    className={styles.input}
+                    placeholder="Contoh: 2024"
+                    min="2000"
+                    max="2100"
+                    defaultValue={new Date().getFullYear()}
+                    required
+                />
             </div>
 
             <button
                 type="submit"
-                className={`${styles.submitBtn} stagger-5`}
+                className={`${styles.submitBtn} stagger-10`}
                 disabled={loading}
             >
                 {loading ? 'Menyimpan...' : 'Daftarkan Santri'}

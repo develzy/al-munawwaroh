@@ -55,12 +55,17 @@ async function generateSignature(timestamp: number) {
 
 export async function addSantri(formData: FormData) {
     const nama = formData.get('nama') as string;
+    const tempat_lahir = formData.get('tempat_lahir') as string;
+    const tanggal_lahir = formData.get('tanggal_lahir') as string;
+    const nama_ibu = formData.get('nama_ibu') as string;
     const kelas = formData.get('kelas') as string;
+    const tingkat = formData.get('tingkat') as string;
     const status = formData.get('status') as string;
+    const tahun_masuk = formData.get('tahun_masuk') as string;
     const fotoFile = formData.get('foto') as File;
 
-    if (!nama || !kelas || !status) {
-        return { success: false, error: 'Semua field wajib diisi' };
+    if (!nama || !kelas || !tingkat || !status || !tahun_masuk) {
+        return { success: false, error: 'Field wajib harus diisi' };
     }
 
     try {
@@ -71,8 +76,21 @@ export async function addSantri(formData: FormData) {
 
         const db = getDB();
         await db.prepare(
-            'INSERT INTO santri (nama, kelas, status, foto_url) VALUES (?, ?, ?, ?)'
-        ).bind(nama, kelas, status, foto_url).run();
+            `INSERT INTO santri (
+                nama, tempat_lahir, tanggal_lahir, nama_ibu, 
+                kelas, tingkat, status, tahun_masuk, foto_url
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+        ).bind(
+            nama,
+            tempat_lahir || null,
+            tanggal_lahir || null,
+            nama_ibu || null,
+            kelas,
+            tingkat,
+            status,
+            parseInt(tahun_masuk),
+            foto_url
+        ).run();
 
         revalidatePath('/santri');
         revalidatePath('/');
