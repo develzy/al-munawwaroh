@@ -37,7 +37,7 @@ export default function RootLayout({
             </head>
             <body>
                 <div className={styles.container}>
-                    <div className={styles.blurBg} />
+                    <div className="mesh-bg" />
                     <div className={styles.appShell}>
                         {children}
                         <BottomNav />

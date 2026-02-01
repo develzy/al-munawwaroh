@@ -7,9 +7,6 @@
     background-color: transparent;
 }
 
-.blurBg {
-    composes: mesh-bg from global;
-}
 
 .appShell {
     width: 100%;
