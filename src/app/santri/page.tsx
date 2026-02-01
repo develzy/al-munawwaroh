@@ -37,7 +37,7 @@ export default async function SantriPage() {
                 </div>
             </header>
 
-            <main className={styles.main}>
+            <main className={styles.main} style={{ paddingTop: '10px' }}>
                 <SantriList initialSantri={santriData} />
             </main>
         </>

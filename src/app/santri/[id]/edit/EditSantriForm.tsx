@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '@/app/page.module.css';
-import { updateSantri } from './actions';
+import { updateSantri } from '@/app/santri/[id]/edit/actions';
 import type { Santri } from '@/lib/db';
 
 export default function EditSantriForm({ santri }: { santri: Santri }) {

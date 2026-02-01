@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import styles from '../../../page.module.css';
-import EditSantriForm from './EditSantriForm';
+import EditSantriForm from '@/app/santri/[id]/edit/EditSantriForm';
 import { getDB, Santri } from '@/lib/db';
 
 export const runtime = 'edge';
