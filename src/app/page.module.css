@@ -149,11 +149,11 @@
 /* Main */
 .main {
     flex: 1;
-    padding: 70px 20px 100px 20px;
+    padding: 100px 20px 100px 20px;
 }
 
 .section {
-    margin-bottom: 35px;
+    margin-bottom: 40px;
 }
 
 .sectionHeader {
