@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from '../page.module.css';
 import { getDB, Santri } from '@/lib/db';
-import HafalanForm from './HafalanForm';
+import HafalanForm from '@/app/hafalan/HafalanForm';
 
 export const runtime = 'edge';
 
