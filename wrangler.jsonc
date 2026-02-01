@@ -9,7 +9,7 @@
         {
             "binding": "DB",
             "database_name": "al-munawwaroh-db",
-            "database_id": "xxxx-xxxx-xxxx-xxxx" // User will need to run 'npx wrangler d1 create' and replace this
+            "database_id": "2c8aedd7-0dca-48cd-9ab0-64479cee6bda"
         }
     ],
     "observability": {
