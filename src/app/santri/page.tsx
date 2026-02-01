@@ -50,8 +50,12 @@ export default function SantriPage() {
                     </div>
 
                     <div className={styles.studentList}>
-                        {filteredSantri.map((santri) => (
-                            <Link href={`/santri/${santri.id}`} key={santri.id} className={styles.studentCard}>
+                        {filteredSantri.map((santri, index) => (
+                            <Link
+                                href={`/santri/${santri.id}`}
+                                key={santri.id}
+                                className={`${styles.studentCard} stagger-${(index % 4) + 1}`}
+                            >
                                 <div className={styles.studentAvatar}>
                                     {santri.name.charAt(0)}
                                 </div>
@@ -64,6 +68,7 @@ export default function SantriPage() {
                                 </div>
                             </Link>
                         ))}
+
 
                         {filteredSantri.length === 0 && (
                             <p style={{ color: 'var(--text-muted)', textAlign: 'center', marginTop: '20px' }}>

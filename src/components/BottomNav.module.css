@@ -1,19 +1,19 @@
 .bottomNav {
     position: fixed;
-    bottom: 24px;
-    left: 20px;
-    right: 20px;
-    max-width: 380px;
+    bottom: 30px;
+    left: 24px;
+    right: 24px;
+    max-width: 400px;
     margin: 0 auto;
-    height: 64px;
-    background: rgba(44, 44, 46, 0.4);
-    backdrop-filter: blur(40px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 32px;
+    height: 72px;
+    background: rgba(15, 23, 42, 0.7);
+    backdrop-filter: blur(30px) saturate(180%);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     z-index: 100;
 }
 
@@ -21,27 +21,44 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
-    color: rgba(255, 255, 255, 0.35);
+    gap: 6px;
+    color: var(--text-muted);
     transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     flex: 1;
+    position: relative;
 }
 
 .navItem i {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .navItem span {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.2px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    opacity: 0.8;
 }
 
 .navItem.active {
-    color: var(--primary);
-    /* iOS Blue */
-    transform: translateY(-4px) scale(1.1);
+    color: var(--accent);
+}
+
+.navItem.active i {
+    transform: translateY(-5px);
+    filter: drop-shadow(0 0 8px var(--accent-glow));
+}
+
+.navItem.active::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    width: 4px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accent);
 }
 
 @media (min-width: 481px) {

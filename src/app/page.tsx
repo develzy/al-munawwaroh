@@ -5,6 +5,9 @@ import Link from 'next/link';
 export const runtime = 'edge';
 
 export default function Home() {
+    const hour = new Date().getHours();
+    const greeting = hour < 10 ? 'Selamat Pagi' : hour < 15 ? 'Selamat Siang' : hour < 18 ? 'Selamat Sore' : 'Selamat Malam';
+
     return (
         <>
             {/* Header Section */}
@@ -16,11 +19,11 @@ export default function Home() {
                         </div>
                         <div className={styles.logoText}>
                             <h1>Al-Munawwaroh</h1>
-                            <span>TPQ - RTQ System</span>
+                            <span>{greeting}</span>
                         </div>
                     </div>
                     <div className={styles.userAvatar}>
-                        <img src="https://ui-avatars.com/api/?name=Admin&background=0e4c68&color=fff" alt="Admin" />
+                        <img src="https://ui-avatars.com/api/?name=Admin&background=064e3b&color=d4af37" alt="Admin" />
                     </div>
                 </div>
 
@@ -28,13 +31,13 @@ export default function Home() {
                 <div className={styles.heroCard}>
                     <div className={styles.cardInfo}>
                         <p>Total Santri Aktif</p>
-                        <h2>142 <small>Anak</small></h2>
+                        <h2>142 <small>Santri</small></h2>
                     </div>
                     <div className={styles.progressContainer}>
                         <div className={styles.progressBar}>
                             <div className={styles.progressFill} style={{ width: '75%' }} />
                         </div>
-                        <span>Target: 200 Santri</span>
+                        <span>Kapasitas: 75% dari 200</span>
                     </div>
                 </div>
             </header>
@@ -43,33 +46,33 @@ export default function Home() {
             <main className={styles.main}>
                 <section className={styles.section}>
                     <div className={styles.sectionHeader}>
-                        <h3>Menu Utama</h3>
+                        <h3>Layanan Utama</h3>
                     </div>
 
                     <div className={styles.menuGrid}>
-                        <Link href="/hafalan" className={styles.menuItem}>
+                        <Link href="/hafalan" className={`${styles.menuItem} stagger-1`}>
                             <div className={`${styles.iconBox} ${styles.gold}`}>
-                                <i className="fa-solid fa-pen-to-square"></i>
+                                <i className="fa-solid fa-book-quran"></i>
                             </div>
-                            <span>Input Hafalan</span>
+                            <span>Hafalan</span>
                         </Link>
-                        <Link href="/santri/baru" className={styles.menuItem}>
+                        <Link href="/santri/baru" className={`${styles.menuItem} stagger-2`}>
                             <div className={`${styles.iconBox} ${styles.green}`}>
                                 <i className="fa-solid fa-user-plus"></i>
                             </div>
-                            <span>Santri Baru</span>
+                            <span>Baru</span>
                         </Link>
-                        <Link href="/absensi" className={styles.menuItem}>
+                        <Link href="/absensi" className={`${styles.menuItem} stagger-3`}>
                             <div className={`${styles.iconBox} ${styles.blue}`}>
-                                <i className="fa-solid fa-check-double"></i>
+                                <i className="fa-solid fa-calendar-check"></i>
                             </div>
                             <span>Absensi</span>
                         </Link>
-                        <Link href="/keuangan" className={styles.menuItem}>
+                        <Link href="/keuangan" className={`${styles.menuItem} stagger-4`}>
                             <div className={`${styles.iconBox} ${styles.purple}`}>
-                                <i className="fa-solid fa-file-invoice-dollar"></i>
+                                <i className="fa-solid fa-hand-holding-heart"></i>
                             </div>
-                            <span>Laporan SPP</span>
+                            <span>Infaq</span>
                         </Link>
                     </div>
                 </section>
@@ -81,7 +84,7 @@ export default function Home() {
                     </div>
 
                     <div className={styles.activityList}>
-                        <div className={styles.activityItem}>
+                        <div className={`${styles.activityItem} stagger-3`}>
                             <div className={styles.actIcon}>
                                 <i className="fa-solid fa-check"></i>
                             </div>
@@ -92,19 +95,21 @@ export default function Home() {
                             <span className={styles.actTime}>2m lalu</span>
                         </div>
 
-                        <div className={styles.activityItem}>
+                        <div className={`${styles.activityItem} stagger-4`}>
                             <div className={`${styles.actIcon} ${styles.goldAct}`}>
-                                <i className="fa-solid fa-star"></i>
+                                <i className="fa-solid fa-crown"></i>
                             </div>
                             <div className={styles.actDetails}>
                                 <h4>Siti Aisyah</h4>
-                                <p>Lulus Tes Juz 30</p>
+                                <p>Lulus Tasmi' Juz 30</p>
                             </div>
                             <span className={styles.actTime}>1j lalu</span>
                         </div>
                     </div>
+
                 </section>
             </main>
         </>
     );
 }
+
