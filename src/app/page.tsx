@@ -66,7 +66,7 @@ export default async function Home() {
                 <div className={styles.headerContent}>
                     <div className={styles.logoArea}>
                         <div className={styles.logoWrapper}>
-                            <img src="/logo.png" alt="Logo" className={styles.logo} />
+                            <img src="https://res.cloudinary.com/dkwaosfda/image/upload/v1769953158/LOGO_YAYASAN_BIRU_zrahsk.png" alt="Logo" className={styles.logo} />
                         </div>
                         <div className={styles.logoText}>
                             <h1>Al-Munawwaroh</h1>
