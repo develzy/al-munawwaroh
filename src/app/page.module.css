@@ -340,6 +340,155 @@
     transform: translateY(-3px);
 }
 
+/* Search Bar */
+.searchContainer {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.searchContainer i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+}
+
+.searchInput {
+    width: 100%;
+    padding: 14px 14px 14px 45px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Student List */
+.studentList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.studentCard {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 14px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s;
+    text-decoration: none;
+}
+
+.studentCard:active {
+    transform: scale(0.98);
+}
+
+.studentAvatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--primary-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.studentInfo {
+    flex: 1;
+}
+
+.studentInfo h4 {
+    font-size: 1rem;
+    color: white;
+    margin-bottom: 2px;
+}
+
+.studentInfo p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.iqro {
+    background: rgba(217, 119, 6, 0.1);
+    color: var(--accent);
+}
+
+.alquran {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+
+/* Forms */
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+    margin-left: 4px;
+}
+
+.input,
+.select {
+    width: 100%;
+    padding: 14px 16px;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    color: white;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.input:focus,
+.select:focus {
+    outline: none;
+    border-color: var(--primary-light);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.submitBtn {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    color: white;
+    border-radius: 16px;
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(217, 119, 6, 0.2);
+    transition: transform 0.2s;
+}
+
+.submitBtn:active {
+    transform: scale(0.97);
+}
+
 /* Responsive */
 @media (min-width: 481px) {
     .appShell {
