@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import styles from '../components/AppShell.module.css';
+import BottomNav from '../components/BottomNav';
 
 // Using local font optimization is better, but for simplicity we can use standard layout
-// Next.js recommended way is using next/font, I will implement that in the layout
 import { Outfit } from 'next/font/google';
 
 const outfit = Outfit({
@@ -34,7 +35,15 @@ export default function RootLayout({
                     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
                 />
             </head>
-            <body>{children}</body>
+            <body>
+                <div className={styles.container}>
+                    <div className={styles.blurBg} />
+                    <div className={styles.appShell}>
+                        {children}
+                        <BottomNav />
+                    </div>
+                </div>
+            </body>
         </html>
     );
 }
