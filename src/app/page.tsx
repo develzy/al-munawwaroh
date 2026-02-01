@@ -4,24 +4,56 @@ import { getDB } from '@/lib/db';
 
 export const runtime = 'edge';
 
-async function getDashboardStats() {
+async function getDashboardData() {
     try {
         const db = getDB();
-        const { count: totalSantri } = await db.prepare('SELECT COUNT(*) as count FROM santri').first<{ count: number }>() || { count: 142 };
+        const { count: totalSantri } = await db.prepare('SELECT COUNT(*) as count FROM santri').first<{ count: number }>() || { count: 0 };
         const { count: countIqro } = await db.prepare("SELECT COUNT(*) as count FROM santri WHERE status = 'iqro'").first<{ count: number }>() || { count: 0 };
+
+        // Fetch recent activities
+        interface Activity {
+            nama: string;
+            materi: string;
+            keterangan: string;
+            tanggal: string;
+        }
+        const { results: activities } = await db.prepare(`
+            SELECT s.nama, h.materi, h.keterangan, h.tanggal 
+            FROM hafalan h 
+            JOIN santri s ON h.santri_id = s.id 
+            ORDER BY h.tanggal DESC 
+            LIMIT 5
+        `).all<Activity>();
 
         return {
             totalSantri,
-            percentIqro: Math.round((countIqro / (totalSantri || 1)) * 100)
+            percentIqro: totalSantri > 0 ? Math.round((countIqro / totalSantri) * 100) : 0,
+            activities: activities || []
         };
     } catch (error) {
-        console.error('Dashboard stats error:', error);
-        return { totalSantri: 142, percentIqro: 75 };
+        console.error('Dashboard data error:', error);
+        return {
+            totalSantri: 142,
+            percentIqro: 75,
+            activities: [
+                { nama: 'Ahmad Fulan', materi: 'Iqro', keterangan: 'Hal 20', tanggal: new Date().toISOString() }
+            ]
+        };
     }
 }
 
+function getTimeAgo(dateStr: string) {
+    const seconds = Math.floor((new Date().getTime() - new Date(dateStr).getTime()) / 1000);
+    if (seconds < 60) return 'Baru saja';
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) return `${minutes}m lalu`;
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) return `${hours}j lalu`;
+    return new Date(dateStr).toLocaleDateString();
+}
+
 export default async function Home() {
-    const stats = await getDashboardStats();
+    const data = await getDashboardData();
 
     // Greeting logic (Server side)
     const hour = new Date().getHours();
@@ -50,13 +82,13 @@ export default async function Home() {
                 <div className={styles.heroCard}>
                     <div className={styles.cardInfo}>
                         <p>Total Santri Aktif</p>
-                        <h2>{stats.totalSantri} <small>Santri</small></h2>
+                        <h2>{data.totalSantri} <small>Santri</small></h2>
                     </div>
                     <div className={styles.progressContainer}>
                         <div className={styles.progressBar}>
-                            <div className={styles.progressFill} style={{ width: `${stats.percentIqro}%` }} />
+                            <div className={styles.progressFill} style={{ width: `${data.percentIqro}%` }} />
                         </div>
-                        <span>Komposisi Iqro: {stats.percentIqro}%</span>
+                        <span>Komposisi Iqro: {data.percentIqro}%</span>
                     </div>
                 </div>
             </header>
@@ -103,17 +135,20 @@ export default async function Home() {
                     </div>
 
                     <div className={styles.activityList}>
-                        {/* Static for now, can be fetched from database later */}
-                        <div className={`${styles.activityItem} stagger-3`}>
-                            <div className={styles.actIcon}>
-                                <i className="fa-solid fa-check"></i>
+                        {data.activities.length > 0 ? data.activities.map((act, idx) => (
+                            <div key={idx} className={`${styles.activityItem} stagger-${(idx % 4) + 1}`}>
+                                <div className={styles.actIcon}>
+                                    <i className={`fa-solid ${act.materi === "Al-Qur'an" ? 'fa-crown' : 'fa-check'}`}></i>
+                                </div>
+                                <div className={styles.actDetails}>
+                                    <h4>{act.nama}</h4>
+                                    <p>{act.materi} - {act.keterangan}</p>
+                                </div>
+                                <span className={styles.actTime}>{getTimeAgo(act.tanggal)}</span>
                             </div>
-                            <div className={styles.actDetails}>
-                                <h4>Ahmad Fulan</h4>
-                                <p>Menyelesaikan Iqro 4 Halaman 20</p>
-                            </div>
-                            <span className={styles.actTime}>2m lalu</span>
-                        </div>
+                        )) : (
+                            <p style={{ color: 'var(--text-muted)', textAlign: 'center' }}>Belum ada aktivitas hari ini.</p>
+                        )}
                     </div>
                 </section>
             </main>
