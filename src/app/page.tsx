@@ -1,12 +1,29 @@
-"use client";
-
 import styles from './page.module.css';
-import Image from 'next/image';
 import Link from 'next/link';
+import { getDB } from '@/lib/db';
 
 export const runtime = 'edge';
 
-export default function Home() {
+async function getDashboardStats() {
+    try {
+        const db = getDB();
+        const { count: totalSantri } = await db.prepare('SELECT COUNT(*) as count FROM santri').first<{ count: number }>() || { count: 142 };
+        const { count: countIqro } = await db.prepare("SELECT COUNT(*) as count FROM santri WHERE status = 'iqro'").first<{ count: number }>() || { count: 0 };
+
+        return {
+            totalSantri,
+            percentIqro: Math.round((countIqro / (totalSantri || 1)) * 100)
+        };
+    } catch (error) {
+        console.error('Dashboard stats error:', error);
+        return { totalSantri: 142, percentIqro: 75 };
+    }
+}
+
+export default async function Home() {
+    const stats = await getDashboardStats();
+
+    // Greeting logic (Server side)
     const hour = new Date().getHours();
     const greeting = hour < 10 ? 'Selamat Pagi' : hour < 15 ? 'Selamat Siang' : hour < 18 ? 'Selamat Sore' : 'Selamat Malam';
 
@@ -33,13 +50,13 @@ export default function Home() {
                 <div className={styles.heroCard}>
                     <div className={styles.cardInfo}>
                         <p>Total Santri Aktif</p>
-                        <h2>142 <small>Santri</small></h2>
+                        <h2>{stats.totalSantri} <small>Santri</small></h2>
                     </div>
                     <div className={styles.progressContainer}>
                         <div className={styles.progressBar}>
-                            <div className={styles.progressFill} style={{ width: '75%' }} />
+                            <div className={styles.progressFill} style={{ width: `${stats.percentIqro}%` }} />
                         </div>
-                        <span>Kapasitas: 75% dari 200</span>
+                        <span>Komposisi Iqro: {stats.percentIqro}%</span>
                     </div>
                 </div>
             </header>
@@ -58,11 +75,11 @@ export default function Home() {
                             </div>
                             <span>Hafalan</span>
                         </Link>
-                        <Link href="/santri/baru" className={`${styles.menuItem} stagger-2`}>
+                        <Link href="/santri" className={`${styles.menuItem} stagger-2`}>
                             <div className={`${styles.iconBox} ${styles.green}`}>
-                                <i className="fa-solid fa-user-plus"></i>
+                                <i className="fa-solid fa-users"></i>
                             </div>
-                            <span>Baru</span>
+                            <span>Santri</span>
                         </Link>
                         <Link href="/absensi" className={`${styles.menuItem} stagger-3`}>
                             <div className={`${styles.iconBox} ${styles.blue}`}>
@@ -86,6 +103,7 @@ export default function Home() {
                     </div>
 
                     <div className={styles.activityList}>
+                        {/* Static for now, can be fetched from database later */}
                         <div className={`${styles.activityItem} stagger-3`}>
                             <div className={styles.actIcon}>
                                 <i className="fa-solid fa-check"></i>
@@ -96,22 +114,9 @@ export default function Home() {
                             </div>
                             <span className={styles.actTime}>2m lalu</span>
                         </div>
-
-                        <div className={`${styles.activityItem} stagger-4`}>
-                            <div className={`${styles.actIcon} ${styles.goldAct}`}>
-                                <i className="fa-solid fa-crown"></i>
-                            </div>
-                            <div className={styles.actDetails}>
-                                <h4>Siti Aisyah</h4>
-                                <p>Lulus Tasmi' Juz 30</p>
-                            </div>
-                            <span className={styles.actTime}>1j lalu</span>
-                        </div>
                     </div>
-
                 </section>
             </main>
         </>
     );
 }
-

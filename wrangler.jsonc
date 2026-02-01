@@ -1,0 +1,19 @@
+{
+    "$schema": "node_modules/wrangler/config-schema.json",
+    "name": "al-munawwaroh",
+    "main": ".open-next/worker.js",
+    "compatibility_date": "2024-11-01",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
+    "d1_databases": [
+        {
+            "binding": "DB",
+            "database_name": "al-munawwaroh-db",
+            "database_id": "xxxx-xxxx-xxxx-xxxx" // User will need to run 'npx wrangler d1 create' and replace this
+        }
+    ],
+    "observability": {
+        "enabled": true
+    }
+}
