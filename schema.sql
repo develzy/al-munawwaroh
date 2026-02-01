@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS santri (
     nama TEXT NOT NULL,
     kelas TEXT NOT NULL,
     status TEXT CHECK(status IN ('iqro', 'alquran')) NOT NULL,
+    foto_url TEXT,
     tanggal_masuk DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
