@@ -12,11 +12,8 @@ async function getSantriData(): Promise<Santri[]> {
         return results || [];
     } catch (error) {
         console.error('Failed to fetch santri:', error);
-        // Fallback to empty list or dummy during setup
-        return [
-            { id: 1, nama: 'Ahmad Fulan', kelas: 'Iqro 4', status: 'iqro', tanggal_masuk: '' },
-            { id: 2, nama: 'Siti Aisyah', kelas: 'Juz 30', status: 'alquran', tanggal_masuk: '' },
-        ];
+        // Fallback to empty list during setup
+        return [];
     }
 }
 

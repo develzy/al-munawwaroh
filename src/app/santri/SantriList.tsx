@@ -3,14 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import styles from '../page.module.css';
-
-interface Santri {
-    id: number;
-    nama: string;
-    kelas: string;
-    status: 'iqro' | 'alquran';
-    foto_url?: string;
-}
+import type { Santri } from '@/lib/db';
 
 export default function SantriList({ initialSantri }: { initialSantri: Santri[] }) {
     const [search, setSearch] = useState('');
@@ -47,10 +40,15 @@ export default function SantriList({ initialSantri }: { initialSantri: Santri[] 
                         </div>
                         <div className={styles.studentInfo}>
                             <h4>{santri.nama}</h4>
-                            <p>{santri.kelas}</p>
+                            <p>{santri.kelas} • {santri.tingkat}</p>
                         </div>
-                        <div className={`${styles.badge} ${santri.status === 'alquran' ? styles.alquran : styles.iqro}`}>
-                            {santri.status === 'alquran' ? "Al-Qur'an" : 'Iqro'}
+                        <div className={`${styles.badge} ${santri.status === 'aktif' ? styles.alquran :
+                                santri.status === 'lulus' ? styles.iqro :
+                                    styles.nonaktif
+                            }`}>
+                            {santri.status === 'aktif' ? 'Aktif' :
+                                santri.status === 'lulus' ? 'Lulus' :
+                                    'Non-Aktif'}
                         </div>
                     </Link>
                 ))}
