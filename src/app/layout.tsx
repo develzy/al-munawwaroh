@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     description: 'A modern premium web experience',
     manifest: '/manifest.json',
     icons: {
-        icon: '/logo.png',
-        apple: '/logo.png',
+        icon: 'https://res.cloudinary.com/dkwaosfda/image/upload/v1769953158/LOGO_YAYASAN_BIRU_zrahsk.png',
+        apple: 'https://res.cloudinary.com/dkwaosfda/image/upload/v1769953158/LOGO_YAYASAN_BIRU_zrahsk.png',
     },
 };
 
