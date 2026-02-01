@@ -39,6 +39,7 @@
     border-bottom-left-radius: 40px;
     border-bottom-right-radius: 40px;
     position: relative;
+    margin-bottom: 60px;
 }
 
 .headerContent {
@@ -117,6 +118,7 @@
     right: 20px;
     bottom: -40px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    z-index: 2;
 }
 
 .cardInfo p {
@@ -162,7 +164,7 @@
 /* Main */
 .main {
     flex: 1;
-    padding: 160px 20px 100px 20px;
+    padding: 40px 20px 100px 20px;
 }
 
 .section {
