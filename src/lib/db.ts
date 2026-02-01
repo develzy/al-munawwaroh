@@ -16,7 +16,8 @@ export interface Santri {
     nama: string;
     kelas: string;
     status: 'iqro' | 'alquran';
-    tanggal_masuk: string;
+    tanggal_masuk?: string;
+    foto_url?: string;
 }
 
 export interface Hafalan {

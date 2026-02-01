@@ -9,6 +9,7 @@ interface Santri {
     nama: string;
     kelas: string;
     status: 'iqro' | 'alquran';
+    foto_url?: string;
 }
 
 export default function SantriList({ initialSantri }: { initialSantri: Santri[] }) {
@@ -39,7 +40,10 @@ export default function SantriList({ initialSantri }: { initialSantri: Santri[] 
                         className={`${styles.studentCard} stagger-${(index % 4) + 1}`}
                     >
                         <div className={styles.studentAvatar}>
-                            {santri.nama.charAt(0)}
+                            <img
+                                src={santri.foto_url || `https://ui-avatars.com/api/?name=${encodeURIComponent(santri.nama)}&background=064e3b&color=d4af37`}
+                                alt={santri.nama}
+                            />
                         </div>
                         <div className={styles.studentInfo}>
                             <h4>{santri.nama}</h4>
