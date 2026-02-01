@@ -1,20 +1,21 @@
 .bottomNav {
     position: fixed;
-    bottom: 25px;
+    bottom: 30px;
     left: 20px;
     right: 20px;
     max-width: 440px;
-    /* Aligned with parent max-width minus padding */
     margin: 0 auto;
-    height: 70px;
-    background: rgba(18, 21, 28, 0.8);
-    backdrop-filter: blur(20px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
+    height: 74px;
+    background: rgba(44, 44, 46, 0.4);
+    /* Dark translucent dock */
+    backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 37px;
+    /* Perfect Capsule */
     display: flex;
     justify-content: space-around;
     align-items: center;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
     z-index: 100;
 }
 
@@ -22,30 +23,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    color: var(--text-muted);
-    transition: all 0.3s;
+    gap: 4px;
+    color: rgba(255, 255, 255, 0.35);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     text-decoration: none;
     flex: 1;
 }
 
 .navItem i {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 }
 
 .navItem span {
-    font-size: 0.7rem;
-    font-weight: 500;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 
 .navItem.active {
-    color: var(--primary-light);
-    transform: translateY(-3px);
+    color: var(--primary);
+    /* iOS Blue */
+    transform: translateY(-4px) scale(1.1);
 }
 
 @media (min-width: 481px) {
     .bottomNav {
         position: absolute;
-        bottom: 25px;
+        bottom: 30px;
     }
 }
