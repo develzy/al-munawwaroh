@@ -1,11 +1,18 @@
--- Tabel Santri
+-- Tabel Santri (Detail Lengkap)
 CREATE TABLE IF NOT EXISTS santri (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nama TEXT NOT NULL,
+    tempat_lahir TEXT,
+    tanggal_lahir DATE,
+    nama_ibu TEXT,
     kelas TEXT NOT NULL,
-    status TEXT CHECK(status IN ('iqro', 'alquran')) NOT NULL,
+    tingkat TEXT CHECK(tingkat IN ('TPQ', 'RTQ', 'Majlis Talim')) DEFAULT 'TPQ',
+    status TEXT CHECK(status IN ('aktif', 'non-aktif', 'lulus')) DEFAULT 'aktif',
+    tahun_masuk INTEGER NOT NULL,
+    tahun_keluar INTEGER,
     foto_url TEXT,
-    tanggal_masuk DATETIME DEFAULT CURRENT_TIMESTAMP
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
 -- Tabel Hafalan

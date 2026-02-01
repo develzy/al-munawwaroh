@@ -14,10 +14,17 @@ export function getDB() {
 export interface Santri {
     id: number;
     nama: string;
+    tempat_lahir?: string;
+    tanggal_lahir?: string;
+    nama_ibu?: string;
     kelas: string;
-    status: 'iqro' | 'alquran';
-    tanggal_masuk?: string;
+    tingkat: 'TPQ' | 'RTQ' | 'Majlis Talim';
+    status: 'aktif' | 'non-aktif' | 'lulus';
+    tahun_masuk: number;
+    tahun_keluar?: number;
     foto_url?: string;
+    created_at?: string;
+    updated_at?: string;
 }
 
 export interface Hafalan {
