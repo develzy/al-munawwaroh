@@ -109,9 +109,9 @@ export default async function Home() {
                         </Link>
                         <Link href="/santri" className={`${styles.menuItem} stagger-2`}>
                             <div className={`${styles.iconBox} ${styles.green}`}>
-                                <i className="fa-solid fa-users"></i>
+                                <i className="fa-solid fa-id-card"></i>
                             </div>
-                            <span>Santri</span>
+                            <span>Data Diri</span>
                         </Link>
                         <Link href="/absensi" className={`${styles.menuItem} stagger-3`}>
                             <div className={`${styles.iconBox} ${styles.blue}`}>
@@ -119,11 +119,11 @@ export default async function Home() {
                             </div>
                             <span>Absensi</span>
                         </Link>
-                        <Link href="/keuangan" className={`${styles.menuItem} stagger-4`}>
+                        <Link href="/syahriah" className={`${styles.menuItem} stagger-4`}>
                             <div className={`${styles.iconBox} ${styles.purple}`}>
-                                <i className="fa-solid fa-hand-holding-heart"></i>
+                                <i className="fa-solid fa-money-bill-wave"></i>
                             </div>
-                            <span>Infaq</span>
+                            <span>Syahriah</span>
                         </Link>
                     </div>
                 </section>
