@@ -23,7 +23,7 @@ export default async function SantriPage() {
     return (
         <>
             <header className={styles.header}>
-                <div className={styles.headerContent}>
+                <div className={styles.headerContent} style={{ marginBottom: 0 }}>
                     <Link href="/" className={styles.backBtn}>
                         <i className="fa-solid fa-arrow-left"></i>
                     </Link>
